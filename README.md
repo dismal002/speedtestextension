@@ -1,10 +1,10 @@
-## Auto Speed  Test for Chrome and Firefox 🛫
+## Auto Speed  Test for Chrome and Firefox
 
-Auto speed test is an extension for Google Chrome and Mozilla Firefox, although most testing has been done on the latest version of Google Chrome Dev. The main purpose of this extension is for ChromeOS device admins to be able to track internet speeds at regular intervals to detect issues with the internet and detect trends in the data to improve the internet. This project uses the free and open-source [Cloudflare Speed Test](https://github.com/cloudflare/speedtest). This extension is is Manifest V3 compilent pull requests are welcome.
+Auto speed test is an extension for Google Chrome and Mozilla Firefox, although most testing has been done on the latest version of Google Chrome Dev. The main purpose of this extension is for ChromeOS device admins to be able to track internet speeds at regular intervals to detect issues with the internet and detect trends in the data to improve the internet. This project uses the free and open-source [Cloudflare Speed Test](https://github.com/cloudflare/speedtest). This extension is Manifest V3 compilent pull requests are welcome.
 
 Output
 
-```css
+```json
 { "downLoadedJitter": 24.873658315573792, 
 "downLoadedLatency": 40.299881499813736, 
 "download": 107650795.01534173, 
