@@ -64,3 +64,12 @@ function runSpeedTest() {
     console.error('Speed Test Error:', e);
   };
 }
+
+// Listen for messages to start speed test manually
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "startSpeedTest") {
+    console.log("Received startSpeedTest message, starting speed test...");
+    runSpeedTest();
+    sendResponse({ status: "Speed test started" });
+  }
+});
