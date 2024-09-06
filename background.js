@@ -24,11 +24,35 @@ function runSpeedTest() {
   engine.onFinish = results => {
     const summary = results.getSummary();
     console.log('Speed Test Finished! Summary:', summary);
-    chrome.storage.local.set({ speedTestResults: summary });
+
+    // Add a timestamp to the results
+    const resultWithTimestamp = {
+      timestamp: new Date().toISOString(),
+      results: summary
+    };
+
+    // Fetch existing results and append the new result
+    chrome.storage.local.get('speedTestResults', (data) => {
+      let allResults = data.speedTestResults;
+
+      // Ensure allResults is an array, even if it's undefined or null
+      if (!Array.isArray(allResults)) {
+        allResults = [];
+      }
+
+      allResults.push(resultWithTimestamp);
+
+      // Store the updated results back in storage
+      chrome.storage.local.set({ speedTestResults: allResults }, () => {
+        console.log('Results successfully saved in storage.');
+      });
+
+      // Send the latest result to the popup for display
+      chrome.runtime.sendMessage({ action: "speedTestFinished", results: summary });
+    });
   };
 
   engine.onError = (e) => {
     console.error('Speed Test Error:', e);
   };
 }
-
