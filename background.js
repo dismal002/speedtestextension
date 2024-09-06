@@ -1,13 +1,21 @@
 import SpeedTest from 'https://cdn.skypack.dev/@cloudflare/speedtest';
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "startSpeedTest") {
-    console.log("Received startSpeedTest message, starting speed test...");
-    runSpeedTest();
-    sendResponse({ status: "Speed test started" });
-  }
+// Set up periodic speed tests and handle installation
+chrome.runtime.onInstalled.addListener(() => {
+  console.log("Extension installed. Setting up periodic speed tests.");
+
+  // Create an alarm to trigger every hour
+  chrome.alarms.create('speedTestAlarm', { periodInMinutes: 60 });
+
+  // Add listener for the alarm
+  chrome.alarms.onAlarm.addListener((alarm) => {
+    if (alarm.name === 'speedTestAlarm') {
+      runSpeedTest();
+    }
+  });
 });
 
+// Function to run speed test
 function runSpeedTest() {
   console.log('Starting speed test...');
 
