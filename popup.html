@@ -4,11 +4,12 @@
   <title>Popup</title>
   <!-- Include Material Components Web CSS -->
   <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
   <style>
     body {
       width: 300px;
-      height: 200px;
+      height: 250px;
       margin: 0;
       padding: 0;
     }
@@ -19,23 +20,34 @@
       padding: 16px;
       margin-top: 16px;
     }
+    .mdc-button {
+      margin-bottom: 12px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h4>Speed Test</h4>
+
+    <!-- Button to start the speed test -->
     <button id="testButton" class="mdc-button mdc-button--raised">
       <span class="mdc-button__ripple"></span>
       <i class="material-icons">play_arrow</i> Start Test
     </button>
+
+    <!-- Button to download all past results -->
+    <button id="downloadAllButton" class="mdc-button mdc-button--raised">
+      <span class="mdc-button__ripple"></span>
+      <i class="material-icons">file_download</i> Download All Results
+    </button>
+
+    <!-- Display test results -->
     <div id="result" class="mdc-card">
       <p>No results yet.</p>
     </div>
   </div>
 
-
   <!-- Include your popup script -->
   <script src="popup.js"></script>
 </body>
 </html>
-
